@@ -12,3 +12,12 @@ body {
     background-color: #f3f3f3;
 }
 
+.quiz-container {
+    width: 100%;
+    text-align: center;
+}
+
+.quiz {
+    width: 50%;
+    background-color: goldenrod;
+}
