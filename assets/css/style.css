@@ -12,6 +12,12 @@ body {
     background-color: #f3f3f3;
 }
 
+header {
+    width: 100%;
+    min-height: 32px;
+    text-align: right;
+}
+
 .quiz-container {
     width: 100%;
     text-align: center;

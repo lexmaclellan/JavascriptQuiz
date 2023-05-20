@@ -10,7 +10,7 @@ beginButton.addEventListener("click", function() {
 function setTime() {
     var timerInterval = setInterval(function() {
         timer--;
-        timeEl.textContent = timer;
+        timeEl.textContent = "Time Remaining: " + timer;
         console.log(timer);
         if (timer === 0) {
             clearInterval(timerInterval);
