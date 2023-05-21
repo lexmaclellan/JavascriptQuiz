@@ -37,6 +37,33 @@ questions.push({
     correctAns : 2
 });
 
+questions.push({
+    ques : "Arrays in JavaScript can be used to store ___________.",
+    ans1 : "1. numbers and strings",
+    ans2 : "2. other arrays",
+    ans3 : "3. booleans",
+    ans4 : "4. all of the above",
+    correctAns : 4
+});
+
+questions.push({
+    ques : "String values must be enclosed within ___________ when being assigned to variables.",
+    ans1 : "1. commas",
+    ans2 : "2. curly brackets",
+    ans3 : "3. quotes",
+    ans4 : "4. parenthesis",
+    correctAns : 3
+});
+
+questions.push({
+    ques : "A very useful tool used during development and debugging for printed content to the debugger is:",
+    ans1 : "1. JavaScript",
+    ans2 : "2. terminal/bash",
+    ans3 : "3. for loops",
+    ans4 : "4. console.log",
+    correctAns : 4
+});
+
 beginButton.addEventListener("click", function() {
     setTime();
     displayQuiz(currentQuestion);
