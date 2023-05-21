@@ -15,11 +15,12 @@ beginButton.addEventListener("click", function() {
 function setTime() {
     var timerInterval = setInterval(function() {
         timer--;
-        timeEl.textContent = "Time Remaining: " + timer;
+        timeEl.textContent = "Time: " + timer;
         
         if (timer === 0) {
             clearInterval(timerInterval);
             timeEl.textContent = "";
+            endQuiz();
         }
     }, 1000);
 };
@@ -30,4 +31,10 @@ function beginQuiz() {
     pEl.textContent = "Hello World";
     quizEl.appendChild(h2El);
     quizEl.appendChild(pEl);
+};
+
+function endQuiz() {
+    quizEl.textContent = "";
+    h2El.textContent = "TEST OVER";
+    quizEl.appendChild(h2El);
 };
