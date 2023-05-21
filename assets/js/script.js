@@ -19,6 +19,7 @@ function setTime() {
         
         if (timer === 0) {
             clearInterval(timerInterval);
+            timeEl.textContent = "";
         }
     }, 1000);
 };
