@@ -38,6 +38,11 @@ button:hover {
     background-color: deeppink;
 }
 
+hr {
+    height: 1px;
+    color: gray;
+}
+
 .quiz-container {
     width: 100%;
 }

@@ -6,7 +6,9 @@ var timeEl = document.querySelector(".time");
 var quizEl = document.querySelector(".quiz");
 var beginButton = document.querySelector("#begin");
 var h2El = document.createElement("h2");
-var pEl = document.createElement("p");
+var p1El = document.createElement("p");
+var hrEl = document.createElement("hr");
+var p2El = document.createElement("p");
 
 var buttonEl1 = document.createElement("button");
 var buttonEl2 = document.createElement("button");
@@ -16,7 +18,24 @@ var buttonEl4 = document.createElement("button");
 var questions = [];
 var currentQuestion = 0;
 var isCorrect = false;
-questions.push({ques : "Commonly used datatypes DO NOT include:", ans1 : "1. strings", ans2 : "2. booleans", ans3 : "3. alerts", ans4 : "4. numbers", correctAns : "3"});
+
+questions.push({
+    ques : "Commonly used datatypes DO NOT include:",
+    ans1 : "1. strings",
+    ans2 : "2. booleans",
+    ans3 : "3. alerts",
+    ans4 : "4. numbers",
+    correctAns : 3
+});
+
+questions.push({
+    ques : "The condition in an if/else statement is enclosed with ___________.",
+    ans1 : "1. quotes",
+    ans2 : "2. curly brackets",
+    ans3 : "3. parenthesis",
+    ans4 : "4. square brackets",
+    correctAns : 2
+});
 
 beginButton.addEventListener("click", function() {
     setTime();
@@ -24,7 +43,23 @@ beginButton.addEventListener("click", function() {
 });
 
 buttonEl1.addEventListener("click", function() {
-    if (questions[currentQuestion].correctAns === "1") {
+    compareAnswers(1);
+});
+
+buttonEl2.addEventListener("click", function() {
+    compareAnswers(2);
+});
+
+buttonEl3.addEventListener("click", function() {
+    compareAnswers(3);
+});
+
+buttonEl4.addEventListener("click", function() {
+    compareAnswers(4);
+});
+
+function compareAnswers(i) {
+    if (questions[currentQuestion].correctAns === i) {
         isCorrect = true;
     }
     else {
@@ -39,7 +74,7 @@ buttonEl1.addEventListener("click", function() {
     else {
         displayQuiz(currentQuestion);
     }
-});
+}
 
 function setTime() {
     var timerInterval = setInterval(function() {
@@ -70,13 +105,24 @@ function displayQuiz(currentQuestion) {
     quizEl.appendChild(buttonEl2);
     quizEl.appendChild(buttonEl3);
     quizEl.appendChild(buttonEl4);
+
+    if (currentQuestion !== 0) {
+        if (isCorrect) {
+            p2El.textContent = "Right!";
+        }
+        else {
+            p2El.textContent = "Wrong";
+        }
+        quizEl.appendChild(hrEl);
+        quizEl.appendChild(p2El);
+    }
 };
 
 function endQuiz() { 
     quizEl.textContent = "";
     h2El.textContent = "TEST OVER";
-    pEl.textContent = "Your score is " + timer;
+    p1El.textContent = "Your score is " + timer;
     stopTime();
     quizEl.appendChild(h2El);
-    quizEl.appendChild(pEl);
+    quizEl.appendChild(p1El);
 };
