@@ -26,6 +26,13 @@ var questions = [];
 var currentQuestion = 0;
 var isCorrect = false;
 
+// Resets variables to default values
+function startOver() {
+    timer = 75;
+    timerStop = false;
+    currentQuestion = 0;
+}
+
 // Add all the questions and their correct answers to an array
 questions.push({
     ques : "Commonly used datatypes DO NOT include:",
