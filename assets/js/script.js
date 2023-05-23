@@ -105,8 +105,10 @@ function compareAnswers(i) {
 
 function setTime() {
     var timerInterval = setInterval(function() {
-        timer--;
-        timeEl.textContent = "Time: " + timer;
+        if (!timerStop) {
+            timer--;
+            timeEl.textContent = "Time: " + timer;
+        }
         
         if (timer <= 0 || timerStop === true) {
             clearInterval(timerInterval);
