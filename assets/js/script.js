@@ -1,24 +1,32 @@
+// Timer variables
 var timer = 75;
 var timerStop = false;
 
+// HTML elements
 var body = document.body;
 var timeEl = document.querySelector(".time");
 var quizEl = document.querySelector(".quiz");
+var viewScores = document.querySelector(".viewScores");
 var beginButton = document.querySelector("#begin");
 var h2El = document.createElement("h2");
 var p1El = document.createElement("p");
 var hrEl = document.createElement("hr");
 var p2El = document.createElement("p");
+var labelEl = document.createElement("label");
+var inputEL = document.createElement("input");
+var submitEl = document.createElement("button");
 
 var buttonEl1 = document.createElement("button");
 var buttonEl2 = document.createElement("button");
 var buttonEl3 = document.createElement("button");
 var buttonEl4 = document.createElement("button");
 
+// Variables for storing questions
 var questions = [];
 var currentQuestion = 0;
 var isCorrect = false;
 
+// Add all the questions and their correct answers to an array
 questions.push({
     ques : "Commonly used datatypes DO NOT include:",
     ans1 : "1. strings",
@@ -64,11 +72,13 @@ questions.push({
     correctAns : 4
 });
 
+// Button for starting the quiz
 beginButton.addEventListener("click", function() {
     setTime();
     displayQuiz(currentQuestion);
 });
 
+// Buttons for answers
 buttonEl1.addEventListener("click", function() {
     compareAnswers(1);
 });
@@ -85,6 +95,23 @@ buttonEl4.addEventListener("click", function() {
     compareAnswers(4);
 });
 
+// Button for submitting high scores
+submitEl.addEventListener("click", function() {
+    var highScores = {
+        initials: inputEL.value,
+        score: timer
+    };
+
+    localStorage.setItem("highScores", JSON.stringify(highScores));
+    showScores();
+});
+
+// Link for viewing high scores
+viewScores.addEventListener("click", function() {
+    showScores();
+});
+
+// Compares the answer button clicked to the question's answer
 function compareAnswers(i) {
     if (questions[currentQuestion].correctAns === i) {
         isCorrect = true;
@@ -103,6 +130,7 @@ function compareAnswers(i) {
     }
 }
 
+// Sets the timer interval and stops it when the quiz is done or the timer hits 0
 function setTime() {
     var timerInterval = setInterval(function() {
         if (!timerStop) {
@@ -122,6 +150,7 @@ function stopTime() {
     timerStop = true;
 };
 
+// Displays the questions and answers
 function displayQuiz(currentQuestion) {
     quizEl.textContent = "";
     h2El.textContent = questions[currentQuestion].ques;
@@ -147,11 +176,27 @@ function displayQuiz(currentQuestion) {
     }
 };
 
+// Displays the end of quiz message and lets the user enter high scores
 function endQuiz() { 
     quizEl.textContent = "";
-    h2El.textContent = "TEST OVER";
-    p1El.textContent = "Your score is " + timer;
+    h2El.textContent = "All done!";
+    p1El.textContent = "Your final score is " + timer;
+    labelEl.textContent = "Enter initials:";
+    submitEl.textContent = "Submit";
     stopTime();
+    quizEl.appendChild(h2El);
+    quizEl.appendChild(p1El);
+    quizEl.appendChild(labelEl);
+    quizEl.appendChild(inputEL);
+    quizEl.appendChild(submitEl);
+};
+
+// Parses and displays the high scores stored in local storage
+function showScores() {
+    var highScores = JSON.parse(localStorage.getItem("highScores"));
+    quizEl.textContent = "";
+    h2El.textContent = "High Scores";
+    p1El.textContent = highScores.initials + ": " + highScores.score;
     quizEl.appendChild(h2El);
     quizEl.appendChild(p1El);
 };
