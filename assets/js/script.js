@@ -42,7 +42,7 @@ questions.push({
     ans2 : "2. curly brackets",
     ans3 : "3. parenthesis",
     ans4 : "4. square brackets",
-    correctAns : 2
+    correctAns : 3
 });
 
 questions.push({
