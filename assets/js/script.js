@@ -20,6 +20,7 @@ var buttonEl1 = document.createElement("button");
 var buttonEl2 = document.createElement("button");
 var buttonEl3 = document.createElement("button");
 var buttonEl4 = document.createElement("button");
+var clearButton = document.createElement("button");
 
 // Variables for storing questions
 var questions = [];
@@ -81,6 +82,7 @@ questions.push({
 
 // Button for starting the quiz
 beginButton.addEventListener("click", function() {
+    startOver();
     setTime();
     displayQuiz(currentQuestion);
 });
@@ -100,6 +102,10 @@ buttonEl3.addEventListener("click", function() {
 
 buttonEl4.addEventListener("click", function() {
     compareAnswers(4);
+});
+
+clearButton.addEventListener("click", function() {
+    localStorage.clear("highScores");
 });
 
 // Button for submitting high scores
@@ -203,7 +209,16 @@ function showScores() {
     var highScores = JSON.parse(localStorage.getItem("highScores"));
     quizEl.textContent = "";
     h2El.textContent = "High Scores";
-    p1El.textContent = highScores.initials + ": " + highScores.score;
+    if (highScores) {
+        p1El.textContent = "1. " + highScores.initials + ": " + highScores.score;
+    }
+    else {
+        p1El.textContent = "";
+    }
+    clearButton.textContent = "Clear";
+    beginButton.textContent = "Start Over";
     quizEl.appendChild(h2El);
     quizEl.appendChild(p1El);
+    quizEl.appendChild(clearButton);
+    quizEl.appendChild(beginButton);
 };
