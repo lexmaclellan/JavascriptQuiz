@@ -1,4 +1,4 @@
-# UNBBootcampQuizChallenge
+# JavascriptQuiz
 
 ## Description
 A webpage that quizzes the user on JavaScript and keeps track of the highest score.
